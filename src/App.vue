@@ -1,7 +1,14 @@
 <template>
-  <h1>hello 2</h1>
+  <v-app>
+    <NavBar></NavBar>
+  </v-app>
 </template>
 
 <script>
-export default {}
+  import NavBar from './components/NavBar'
+  export default {
+    components: {
+      NavBar
+    }
+  }
 </script>
