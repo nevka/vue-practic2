@@ -1,12 +1,26 @@
 <template>
   <div>
-    <v-navigation-drawer app temporary></v-navigation-drawer>
+    <v-navigation-drawer app temporary v-model="sideNav">
+      <v-list>
+        <v-list-tile v-for="(link, i) in links" :key="i" :to="link.url">
+          <v-list-tile-action>
+            <v-icon>{{link.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="link.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
     <v-toolbar app dark color="primary">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>Онлайн магазин</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Link One</v-btn>
+        <v-btn flat v-for="(link, i) in links" :key="i" :to="link.url">
+          <v-icon left="">{{link.icon}}</v-icon>
+          {{link.title}}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -17,7 +31,38 @@
 
 <script>
   export default {
-    name: 'NavBar'
+    data () {
+      return {
+        sideNav: false,
+        links: [
+          {
+            title: 'Логин',
+            icon: 'account_box',
+            url: '/login'
+          },
+          {
+            title: 'Регистрация',
+            icon: 'face',
+            url: '/register'
+          },
+          {
+            title: 'Корзина',
+            icon: 'shopping_cart',
+            url: '/checkout'
+          },
+          {
+            title: 'Новый продукт',
+            icon: 'add',
+            url: '/new'
+          },
+          {
+            title: 'Мои продукты',
+            icon: 'list',
+            url: '/list'
+          },
+        ]
+      }
+    }
   }
 </script>
 
