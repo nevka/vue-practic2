@@ -14,7 +14,9 @@
     </v-navigation-drawer>
     <v-toolbar app dark color="primary">
       <v-toolbar-side-icon class="hidden-md-and-up" @click="sideNav = !sideNav"></v-toolbar-side-icon>
-      <v-toolbar-title>Онлайн магазин</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link :to="'/'" tag="span" class="pointer">Интернет магазин</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat v-for="(link, i) in links" :key="i" :to="link.url">
@@ -67,5 +69,7 @@
 </script>
 
 <style scoped>
-
+  .pointer{
+    cursor: pointer;
+  }
 </style>
