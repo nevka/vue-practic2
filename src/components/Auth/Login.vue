@@ -58,6 +58,11 @@
             .catch(() => {})
         }
       }
+    },
+    created () {
+      if (this.$route.query['loginError']) {
+        this.$store.dispatch('setError', 'Пожалуйста авторизуйтест')
+      }
     }
   }
 </script>
