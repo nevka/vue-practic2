@@ -39,7 +39,7 @@ export default {
         commit('setLoading', false)
       } catch (error) {
         commit('setLoading', false)
-        commit('setError', error.metadata)
+        commit('setError', error.message)
         throw error
       }
     }
