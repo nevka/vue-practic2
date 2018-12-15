@@ -33,7 +33,7 @@
         <v-layout>
           <v-flex xs12>
             <v-spacer></v-spacer>
-            <v-btn class="success" :disabled="!valid" @click="createProduct">Создать продукт</v-btn>
+            <v-btn class="success" :loading="loading" :disabled="!valid || loading" @click="createProduct">Создать продукт</v-btn>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -55,6 +55,11 @@
         valid: false
       }
     },
+    computed: {
+      loading () {
+        return this.$store.getters.loading
+      }
+    },
     methods: {
       createProduct () {
         if (this.$refs.form.validate()) {
@@ -68,7 +73,11 @@
             promo: this.promo,
             valid: this.valid
           }
-          console.log(product)
+          this.$store.dispatch('createProduct', product)
+            .then(() => {
+              this.$router.push('/list')
+            })
+            .catch(() => {})
         }
       }
     }
