@@ -3,26 +3,26 @@
     <section class="product mt-3 elevation-10">
       <v-layout row wrap>
         <v-flex xs12 lg6>
-          <img src="https://image.ibb.co/cpScgo/ASUS_FX503_VD.jpg" class="product_img">
+          <img :src="product.imageSrc" class="product_img">
         </v-flex>
         <v-flex xs12 lg6>
           <div class="product_info">
-            <h5 class="product_title display-1 mb-3 mt-3">Lorem ipsum.</h5>
+            <h5 class="product_title display-1 mb-3 mt-3">{{product.title}}</h5>
             <p class="product_category title">
-              <span class="product_title">Производитель: </span>lorem
+              <span class="product_title">Производитель: </span>{{product.vendor.charAt(0).toUpperCase() + product.vendor.substr(1)}}
             </p>
             <p class="product_price title">
-              <span class="product_title">Цена: </span>200
+              <span class="product_title">Цена: </span>{{product.price}}
             </p>
             <p class="product_color title">
               <span class="product_title">Цвет: </span>
-              <span class="product_color__bg" :title="'purple'" :style="{backgroundColor: 'purple'}"></span>
+              <span class="product_color__bg" :title="product.color" :style="{backgroundColor: product.color}"></span>
             </p>
             <p class="title">
-              <span class="product_title">Материал: </span>Lorem
+              <span class="product_title">Материал: </span>{{product.material.charAt(0).toUpperCase() + product.material.substr(1)}}
             </p>
             <div class="title mb-5">
-              <p class="product_title mb-2">Описание: </p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, reprehenderit?
+              <p class="product_title mb-2">Описание: </p>{{product.description}}
             </div>
             <v-btn color="primary" class="headline">Редактировать</v-btn>
             <v-btn color="primary" class="headline">Купить</v-btn>
@@ -35,8 +35,12 @@
 
 <script>
   export default {
-    data () {
-      return {}
+    props: ['id'],
+    computed: {
+      product () {
+        const id = this.id
+        return this.$store.getters.productById(id)
+      }
     }
   }
 </script>
