@@ -30,7 +30,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn dark color="light-blue darken-4" round outline :to="'/product/' + product.id">Подробнее</v-btn>
-              <v-btn dark color="light-blue darken-4" round>Добавить в корзину</v-btn>
+              <app-buy-dialog :product="products"></app-buy-dialog>
             </v-card-actions>
           </v-card>
         </v-flex>

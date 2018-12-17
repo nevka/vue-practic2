@@ -25,7 +25,7 @@
               <p class="product_title mb-2">Описание: </p>{{product.description}}
             </div>
             <app-edit-product :product="product" v-if="isOwner"></app-edit-product>
-            <v-btn color="primary" class="headline">Купить</v-btn>
+            <app-buy-dialog :product="product"></app-buy-dialog>
           </div>
         </v-flex>
       </v-layout>
