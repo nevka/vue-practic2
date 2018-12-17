@@ -12,7 +12,7 @@
           <!--<v-text-field name="description" multi-line label="Описание" type="text" v-model="description"></v-text-field>-->
           <v-textarea name="description" multi-line label="Описание" type="text" v-model="description"></v-textarea>
         </v-form>
-        <v-layout class="mb-3">
+        <v-layout row class="mb-3">
           <v-flex xs12>
             <v-btn class="warning" @click="upload">
               Загрузить
@@ -21,17 +21,17 @@
             <input type="file" style="display: none;" accept="image/*" ref="fileInput" @change="onFileChange">
           </v-flex>
         </v-layout>
-        <v-layout>
+        <v-layout row>
           <v-flex xs12>
             <img :src="imageSrc" height="200px" v-if="imageSrc">
           </v-flex>
         </v-layout>
-        <v-layout>
+        <v-layout row>
           <v-flex xs12>
             <v-switch color="primary" v-model="promo" label="Добавить в промо"></v-switch>
           </v-flex>
         </v-layout>
-        <v-layout>
+        <v-layout row>
           <v-flex xs12>
             <v-spacer></v-spacer>
             <v-btn class="success" :loading="loading" :disabled="!valid || !image || loading" @click="createProduct">Создать продукт</v-btn>

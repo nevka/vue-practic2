@@ -4,7 +4,7 @@
       <v-flex xs12 sm6 offset-sm3>
         <h1 class="text--secondary mb-3">Мои продукты</h1>
         <v-card class="elevation-10 mb-2" v-for="(product, i) in myProducts" :key="i">
-          <v-layout>
+          <v-layout row>
             <v-flex xs4>
               <v-card-media :src="product.imageSrc" height="250px">
 
