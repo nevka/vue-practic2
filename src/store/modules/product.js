@@ -31,7 +31,7 @@ export default {
     async createProduct ({commit, getters}, payload) {
       commit('clearError')
       commit('setLoading', true)
-      // const image = payload.image
+      const image = payload.image
       try {
         const newProduct = new Product(
           payload.title,
@@ -45,15 +45,15 @@ export default {
           payload.promo)
 
         const product = await fb.database().ref('products').push(newProduct)
-        // const imageExt = image.name.slice(image.name.lastIndexOf('.'))
-        // const fileData = await fb.storage().ref(`products/${product.key}.${imageExt}`).put(image)
-        // const imageSrc = await fb.storage().ref().child(fileData.ref.fullPath).getDownloadURL()
-        // await fb.database().ref('products').child(product.key).update({ imageSrc })
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
+        const fileData = await fb.storage().ref(`products/${product.key}.${imageExt}`).put(image)
+        const imageSrc = await fb.storage().ref().child(fileData.ref.fullPath).getDownloadURL()
+        await fb.database().ref('products').child(product.key).update({ imageSrc })
         commit('setLoading', false)
         commit('createProduct', {
           ...newProduct,
-          id: product.key
-          // imageSrc
+          id: product.key,
+          imageSrc
         })
       } catch (error) {
         commit('setError', error.message)
