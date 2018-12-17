@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout row>
+    <v-layout row v-if="!loading && myProducts.length !== 0">
       <v-flex xs12 sm6 offset-sm3>
         <h1 class="text--secondary mb-3">Мои продукты</h1>
         <v-card class="elevation-10 mb-2" v-for="(product, i) in myProducts" :key="i">
@@ -24,6 +24,16 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout v-else-if="!loading && myProducts.length === 0">
+      <v-flex xs12 class="text-xs-center">
+        <h1 class="text--primary">У вас нет товаров</h1>
+      </v-flex>
+    </v-layout>
+    <v-layout v-else>
+      <v-flex xs12 class="text-xs-center">
+        <v-progress-circular :size="100" :width="4" color="purple" indeterminate></v-progress-circular>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -32,6 +42,9 @@
     computed: {
       myProducts () {
         return this.$store.getters.myProducts
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     }
   }
